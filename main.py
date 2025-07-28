@@ -2,12 +2,13 @@ import os
 from pathlib import Path
 from Framework import frame_files
 
-#directory_path = Path(r"C:\Users\Ekko\Documents\Test")
+directory_path = Path(r"C:\Users\Ekko\Documents\Test")
 
-user_key = ("123")
+user_key = ("Password")
 user_Bkey = user_key.encode()
 salt = os.urandom(16)
 key = user_Bkey+salt
+print(key)
 
 user_select = "m"
 
@@ -31,7 +32,7 @@ if user_select == "m":
         bmsg_len = len(bmsg)
         key_len = len(key)
         for char in range(bmsg_len):
-            xor = bmsg_list[char] ^ key_list[char]
+            xor = bmsg_list[char] ^ key_list[char % key_len]
             result.append(xor)
         new_result = "".join(str(result))
         print(new_result[1:-1])
