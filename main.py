@@ -1,16 +1,16 @@
 import os
 from pathlib import Path
-from Framework import frame_files
+from Framework import frame_files, frame_input
 
 directory_path = Path(r"C:\Users\Ekko\Documents\Test")
 
+
 user_key = ("Password")
-user_Bkey = user_key.encode()
-salt = os.urandom(16)
-key = user_Bkey+salt
+key = user_key.encode()
 print(key)
 
-user_select = "m"
+#user_select = input("Welcome. Would you like to encrypt/decrypt a TXT file or a message? (txt/msg): ").lower().strip()
+user_select = "msg" #testmode
 
 if user_select == "txt":
     for files in directory_path.iterdir():
@@ -20,7 +20,7 @@ if user_select == "txt":
                 text = f.read()
                 print (text)
 
-if user_select == "m":
+if user_select == "msg":
     user_mode = input("Would you like to (e)nrypt or (d)ecrypt a message? ").lower().strip()
     if user_mode == "e":
         user_msg = input("Message: ").strip()
